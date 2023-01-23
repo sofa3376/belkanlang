@@ -11,7 +11,7 @@ static const char help[] =
 
 int main(int argc, char* argv[]) {
   if (argc > 1) {
-    for (int i = 0; i < argc; i++) {
+    for (int i = 1; i < argc; i++) {
       if (strcmp(argv[i], "-help") || strcmp(argv[i], "-h"))
         printf(help[]);
       else if (strcmp(argv[i], "-v") || strcmp(argv[i], "-version"))
