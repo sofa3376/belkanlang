@@ -1,4 +1,4 @@
-use bkl::VM;
+use bkl::vm::{VM, Opcode};
 
 fn main() {
     let mut vm = VM::new();
