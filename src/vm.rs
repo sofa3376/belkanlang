@@ -7,11 +7,11 @@ pub enum Opcode {
 }
 
 pub struct VM {
-    code: Vec<(Opcode, i32)>,
-    stack: Vec<i32>,
+    pub code: Vec<(Opcode, i32)>,
+    pub stack: Vec<i32>,
 }
 
-pub impl VM {
+impl VM {
     pub fn new() -> VM {
         VM {
             code: Vec::new(),
@@ -32,23 +32,23 @@ pub impl VM {
             match opcode {
                 Opcode::Push => self.stack.push(*operand),
                 Opcode::Add => {
-                    let b = self.stack.pop();
-                    let a = self.stack.pop();
+                    let b = self.stack.pop().unwrap();
+                    let a = self.stack.pop().unwrap();
                     self.stack.push(a + b);
                 },
                 Opcode::Sub => {
-                    let b = self.stack.pop();
-                    let a = self.stack.pop();
+                    let b = self.stack.pop().unwrap();
+                    let a = self.stack.pop().unwrap();
                     self.stack.push(a - b);
                 },
                 Opcode::Mul => {
-                    let b = self.stack.pop();
-                    let a = self.stack.pop();
+                    let b = self.stack.pop().unwrap();
+                    let a = self.stack.pop().unwrap();
                     self.stack.push(a * b);
                 },
                 Opcode::Div => {
-                    let b = self.stack.pop();
-                    let a = self.stack.pop();
+                    let b = self.stack.pop().unwrap();
+                    let a = self.stack.pop().unwrap();
                     self.stack.push(a / b);
                 },
             }
