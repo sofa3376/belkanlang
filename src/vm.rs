@@ -4,11 +4,12 @@ pub enum Opcode {
     Sub,
     Mul,
     Div,
+    Pop,
 }
 
 pub struct VM {
-    pub code: Vec<(Opcode, i32)>,
-    pub stack: Vec<i32>,
+    pub code: Vec<(Opcode, f64)>,
+    pub stack: Vec<f64>,
 }
 
 impl VM {
@@ -19,11 +20,11 @@ impl VM {
         }
     }
 
-    pub fn push(&mut self, value: i32) {
+    pub fn push(&mut self, value: f64) {
         self.stack.push(value);
     }
 
-    pub fn pop(&mut self) -> i32 {
+    pub fn pop(&mut self) -> f64 {
         self.stack.pop().unwrap()
     }
 
@@ -31,6 +32,7 @@ impl VM {
         for (opcode, operand) in &self.code {
             match opcode {
                 Opcode::Push => self.stack.push(*operand),
+                Opcode::Pop => drop(self.stack.pop()),
                 Opcode::Add => {
                     let b = self.stack.pop().unwrap();
                     let a = self.stack.pop().unwrap();
